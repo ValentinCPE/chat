@@ -1,0 +1,20 @@
+<p class="line-1 anim-typewriter">Entre ton <strong>pseudo</strong> pour rejoindre le live</p>
+<br/>
+<div class="container">
+  <form class="form" action="#">
+        <input matInput type="text" name="pseudo" class="form__field" placeholder="Ex : 69LaTrick" [matAutocomplete]="pseudoMail" [formControl]="pseudo" (keyup)="enterPressed($event)"/>
+        <mat-autocomplete #pseudoMail = "matAutocomplete">
+          <mat-option *ngFor = "let mail of pseudoPossible" [value] = "mail">
+            {{mail}}
+          </mat-option>
+        </mat-autocomplete>
+        <button type="button" class="btn btn--primary btn--inside uppercase" [class.btn--blocked]="!canLogging()" [disabled]="!canLogging()" (click)="loggingIn()">{{ canLogging() ? connectOrCreate.toString() : 'Remplir' }}</button>
+        <div class="error-pseudo">
+          <span class="char-error-text" [class.attribute-success]="charMinimumSuccess">6 caractères minimum</span>
+          <br/><br/>
+          <span class="number-letter-error-text" [class.attribute-success]="mailFormat">Format adresse mail correct</span>
+          <br/><br/>
+          <span class="already-taken-error-text" [class.attribute-success]="cpeAdress">Adresse CPE</span>
+        </div>
+  </form>
+</div>

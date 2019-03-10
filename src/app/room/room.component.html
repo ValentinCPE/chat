@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="card-block link-image" *ngFor="let room of rooms; let i = index" (mouseenter)="checkPasswordHover(room)" (mouseleave)="hoverQuit(room)" (click)="roomChoosen(room)">
+    <div class="card bg-dark text-white">
+      <img class="card-img custom-img" [class.isHovering]="room.isHovering" [src]="room.currentImage" alt="Card image">
+      <div class="card-img-overlay">
+        <h2 class="card-title">{{ room.roomname }}</h2>
+        <p class="card-text">{{ room.description ? room.description : "Salon n°"+i.toString() }}</p>
+        <p class="card-text">Créé le {{ room.datecreation | date}}</p>
+      </div>
+    </div>
+  </div>
+</div>

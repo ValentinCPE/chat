@@ -1,0 +1,44 @@
+<button class="btn-warning" (click)="quitRoom()">Quitter le salon</button>
+<h1 class="title-chat">{{ room.roomname }}</h1>
+<div class="video-player">
+  <vg-player>
+    <vg-controls>
+      <vg-play-pause></vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+      </vg-scrub-bar>
+
+      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+      <vg-mute></vg-mute>
+      <vg-volume></vg-volume>
+
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+
+    <video #media [vgMedia]="media" id="singleVideo" preload="auto" crossorigin>
+      <source src="" type="video/mp4">
+    </video>
+  </vg-player>
+</div>
+<div class="message-box">
+  <div class="people-online">
+    {{ users.length }} personne{{ (users.length > 1) ? 's' : '' }} en ligne
+  </div>
+  <div class="messages-container">
+    <div class="message-infos" *ngFor="let message of messages">
+      <div class="pseudo">{{ message.pseudo }}</div>
+      <div class="message">{{ message.message }}</div>
+      <div class="date">{{ message.date }}</div>
+    </div>
+  </div>
+  <form class="message-sender">
+    <input type="text" name="message" placeholder="Saisir votre message..." [(ngModel)]="messageTyped" />
+    <button (click)="sendMessage()">Envoyer</button>
+  </form>
+</div>
